@@ -1,0 +1,126 @@
+编码规范
+    1.类名
+        App 对应  App (程序入口类)
+        Menu 对应 Menu (菜单类)
+        Operate 对应  Operate (业务处理类)
+        Person 对应   Person (实体类)
+        TelNoteRegex 对应 TelNoteRegex (用户输入验证类)
+        OrderByName 对应  OrderByName (姓名排序比较器)
+        OrderByAge 对应   OrderByAge  (年龄排序比较器)
+        OrderBySex  对应  OrderByAge  (性别排序比较器)
+    2.方法名
+        2.1App类中方法
+            main()  启动程序方法
+            start()   主菜单控制
+        2.2Operate类中方法
+            private List<Person> list 容器
+            addLogic()  用户添加记录业务逻辑控制
+            searchLogic()   用户查询记录业务逻辑控制
+            modifyLogic()   修改记录业务逻辑控制
+            deleteLogic()   删除记录业务逻辑控制
+            orderLogic()    排序记录业务逻辑控制
+            addOperate()    添加新记录信息
+            showAll()   查询全部记录
+            searchByName()  按姓名查询记录
+            searchByAge()   按年龄查询记录
+            searchBySex()   按性别查询记录
+            searchByTelNum()    按电话号码查询记录
+            searchByAdd()   按地址查询记录
+            modifyOperation()   修改指定记录
+            deleteOperation()   删除指定记录
+            deleteAllOperation()   删除全部记录
+            orderName()   按用户姓名排序记录
+            orderAge()   按用户年龄排序记录
+            orderSex()   按用户性别排序记录
+        2.3TelNoteRegex类中的方法
+            menultemValidate(int min,int max)  对菜单输入选项的验证
+            nameValidate()  对用户输入姓名的验证
+            ageValidate()  对用户输入年龄的验证
+            sexValidate()  对用户输入性别的验证
+            telNumValidate()  对用户输入电话号码的验证
+            addressValidate()  对用户输入地址的验证
+        2.4Menu类中的方法
+            mainMenu()  主菜单
+            addMenu()  添加记录菜单
+            searchMenu()  查找记录菜单
+            modifyMenu()  修改记录主菜单
+            subModifyMenu()  修改记录子菜单
+            deleteMenu()  删除记录菜单
+            orderMenu()  排序记录菜单
+        2.5Person类中的方法
+            private int id; 用户序列号属性
+            private String name;    用户姓名属性
+            private String age; 用户年龄属性
+            private String sex; 用户性别属性
+            private String telNum;  用户电话号码属性
+            private String address; 用户地址属性
+            Person()    无参构造方法
+            Person(String name, String age, String sex, String telNum, String address)   有参构造方法
+            getName()   读取用户名
+            setName(String name)    设置用户名
+            getAge()    读取用户年龄
+            setAge(String age)  设置用户年龄
+            getSex()    读取用户性别
+            setSex(String sex)  设置用户性别
+            getTelNum() 读取用户电话号码
+            setTelNum(String telNum)    设置用户电话号码
+            getAddress()    读取用户地址
+            setAddress(String address)  设置用户地址
+            toString()  链接字符串方法
+        2.6OrderByName类中的方法
+            compare(Person p1,Person p2)    根据姓名排序方法
+        2.7OrderByAge类中的方法
+            compare(Person p1,Person p2)    根据年龄排序方法
+        2.8OrderBySex类中的方法
+            compare(Person p1,Person p2)    根据性别排序方法
+
+正则表达式
+    概念：
+        用来检索，替换那些符合某个模式（规则的文本）。
+    作用：
+        对字符串操作的一种逻辑公式，用事先定义好的一些特定字符，及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达字符串的一种过滤逻辑。使用特殊语法来表示
+    字符类，数量限定符和位置关系，然后用这些特殊语法和普通字符一起表达一个模式。
+    特点：
+        1.灵活性，逻辑性和功能性非常的强；
+        2.可以迅速地用极简单的方式达到字符串的复杂控制；
+    使用：
+        在Java中正则表达式为String类型，被验证的内容同样为String类型。通过String类中的matches方法实现内容的匹配校验。如：“被验证的内容”.matches("正则表达式")
+    语法规则：
+        [内容限定]{长度限定}
+    内容限定：
+         通过[]限定内容
+        在定义限定内容规则时，如果没有指定长度限定，默认长度为1
+        1.单个字符限定：
+            [a]:表示当前内容必须是字母a
+        2.范围字符限定：
+            [a-z0-9]:表示内容可以是a-z之间的任意字母或者0-9之间的任意数字，不分先后。
+        3.取反限定：
+            [^abc]:表示内容不能是a或b或c。
+    长度限定：
+        通过{}限定内容长度
+        1.固定长度：{固定长度值}
+        2.范围长度：{最小长度值,最大长度值}
+            例如：
+                [a-z]{5}---->内容范围为小写字母a到z，长度必须为5
+                [a-z]{2,8}---->内容范围为小写字母a到z，长度在2到8之间，包含2与8
+                [a-z]{2,}---->内容范围为小写字母a到z，最小长度为2，最大长度为无限制
+                [a-z]{0,2}---->内容范围为小写字母a到z，最小长度为0，最大长度为2
+        3.长度限定符号
+            通过预定义符号完成长度限定
+            ？：零次或一次---->等价于{0,1}
+            +：一次或多次---->等价于{1,}
+            *：零次或多次---->等价于{0,}
+        4.预定义字符
+            \d ：匹配一个数字字符---->等价于[0-9]。
+            \D：匹配一个非数字字符---->等价于[^0-9]。
+            \n ： 匹配一个换行符。
+            \r ：匹配一个回车符。
+            \s ：匹配任何空白字符，包括空格、制表符、换页符等等。
+            \S ：匹配任何非空白字符。
+            \t ：匹配一个制表符。
+            \w ：匹配包括下划线的任何单词字符---->等价于“[A-Za-z0-9_]”。
+            \W ：匹配任何非单词字符---->等价于“[^A-Za-z0-9_]”。
+        5.正则表达式的组合定义
+            可以通过多个内容限定与长度限定来组合定义
+            例如：
+                "[a-z]{1}\\w{3,8}"---->必须以字母开头，最小长度为4，最大长度为8
